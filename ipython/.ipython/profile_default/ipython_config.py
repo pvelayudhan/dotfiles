@@ -1,0 +1,1 @@
+c.TerminalInteractiveShell.autoindent = False

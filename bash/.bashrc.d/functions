@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+function batlevels() {
+    cat /sys/class/power_supply/BAT0/charge_start_threshold
+    cat /sys/class/power_supply/BAT0/charge_stop_threshold
+}
+
+function batmax() {
+    echo "$1" | sudo tee /sys/class/power_supply/BAT0/charge_stop_threshold
+}
+
+function batmin() {
+    echo "$1" | sudo tee /sys/class/power_supply/BAT0/charge_start_threshold
+}
+
+# https://stackoverflow.com/a/26134858/16626788
+# cd up to n dirs
+# using:  cd.. 10   cd.. dir
+function cd_up() {
+  case $1 in
+    *[!0-9]*)
+      cd $( pwd | sed -r "s|(.*/$1[^/]*/).*|\1|" )
+      ;;
+    *)
+      cd $(printf "%0.0s../" $(seq 1 $1));
+    ;;
+  esac
+}
+
+function cpfig() {
+    cp -i "$@" ~/Documents/abcd-snf-article/figures/
+}
+
+function gpa() {
+    cd ~/documents/
+    find . -name .git -print -execdir git pull \;
+}
+
+# Echo git status results applied to all subdirectories
+function gsa() {
+  for dir in */; do
+    if [ -d "$dir" ] && git -C "$dir" rev-parse 2>/dev/null && git -C "$dir" status --porcelain | grep -q .; then
+      echo "Changes found in $dir"
+    fi
+  done
+}
+
+# Launch ipython after sourcing virtual environment (if possible)
+function ipy() {
+    if [ -d "venv" ]; then
+        source venv/bin/activate
+    fi
+    ipython3 --no-autoindent --HistoryManager.enabled=False
+}
+
+# Switch to light theme
+function lightson() {
+    # neovim
+    rm ~/.config/nvim/lua/user/colorscheme.lua
+    ln -s ~/.config/nvim/lua/user/colorscheme_light.lua ~/.config/nvim/lua/user/colorscheme.lua 
+
+    # sway
+    rm ~/.config/sway/theme
+    ln -s ~/.config/sway/theme_light ~/.config/sway/theme
+
+    # waybar
+    rm ~/.config/waybar/style.css
+    ln -s ~/.config/waybar/style_light.css ~/.config/waybar/style.css
+
+    swaymsg reload
+
+    # kitty
+    kitten themes --cache-age=-1 --reload-in=all Github Light High Contrast
+
+    # gtk
+    rm ~/.config/gtk-3.0/settings.ini
+    ln -s ~/.config/gtk-3.0/settings_light.ini ~/.config/gtk-3.0/settings.ini
+}
+
+# Switch to dark theme
+function lightsoff() {
+    # neovim
+    rm ~/.config/nvim/lua/user/colorscheme.lua
+    ln -s ~/.config/nvim/lua/user/colorscheme_dark.lua ~/.config/nvim/lua/user/colorscheme.lua 
+
+    # sway
+    rm ~/.config/sway/theme
+    ln -s ~/.config/sway/theme_dark ~/.config/sway/theme
+
+    # waybar
+    rm ~/.config/waybar/style.css
+    ln -s ~/.config/waybar/style_dark.css ~/.config/waybar/style.css
+
+    swaymsg reload
+
+    # kitty
+    kitten themes --cache-age=-1 --reload-in=all Gruvbox Material Dark Medium
+
+    # gtk
+    rm ~/.config/gtk-3.0/settings.ini
+    ln -s ~/.config/gtk-3.0/settings_dark.ini ~/.config/gtk-3.0/settings.ini
+}
+
+# Check when a file was created
+function made() {
+    for file in $1
+    do
+        date -d "@$(stat -c '%Y' $file)" '+%a %b %d %T %Z %Y'
+    done
+}
+
+# Check when all files were created
+function madeall() {
+    for file in *
+    do
+       prefix=$file
+       len=`expr length "$prefix"`
+       gaps="$((60-len))"
+       space=$(printf ' %.0s' $(seq $gaps))
+       suffix=$(date -d "@$(stat -c '%Y' $file)" '+%b %d %T %Z %Y')
+       echo "$file $space $suffix"
+    done
+}
+
+function play() {
+    if [ "$1" == "-g" ]; then
+        # Check if a search string is provided
+        if [ -z "$2" ]; then
+            echo "Usage: play -g <string>"
+            return 1
+        fi
+        local search_string="$2"
+        # Perform case-insensitive search for the string in the Path column
+        awk -F, -v search="$search_string" 'tolower($2) ~ tolower(search) && $5 == "True" {print $2}' music_library.csv | shuf | xargs -d '\n' mpv
+    elif [ -z "$1" ]; then
+        # No arguments provided, play all songs randomly
+        awk -F, '$5 == "True" {print $2}' music_library.csv | shuf | xargs -d '\n' mpv
+    else
+        # If a single tag is provided without commas, treat it as a tag filter
+        if [[ "$1" != *","* ]]; then
+            local tag="$1"
+            awk -F, "\$3 ~ /(^|;)${tag}(;|\$)/ && \$5 == \"True\" {print \$2}" music_library.csv | shuf | xargs -d '\n' mpv
+        else
+            # Multiple tags provided, match songs with those tags
+            local tags="$1"
+            local condition=""
+            IFS=',' read -ra tag_array <<< "$tags"
+            for tag in "${tag_array[@]}"; do
+                condition="$condition (\$3 ~ /(^|;)${tag}(;|$)/) &&"
+            done
+            condition="${condition%&&}"
+            awk -F, "$condition && \$5 == \"True\" {print \$2}" music_library.csv | shuf | xargs -d '\n' mpv
+        fi
+    fi
+}
+
+function sssave() {
+    if [ -n "$1" ]; then
+        grimshot save area ~/Pictures/screenshots/$(date +'%Y_%m_%d_')"$1".png
+    else
+        grimshot save area ~/Pictures/screenshots/$(date +'%Y_%m_%d_%H_%M_%S').png
+    fi
+}

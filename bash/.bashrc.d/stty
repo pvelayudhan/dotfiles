@@ -1,0 +1,2 @@
+# Disable "terminal flow control"
+stty -ixon

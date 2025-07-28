@@ -1,0 +1,5 @@
+*.swp
+packer_compiled.lua
+history.sqlite
+lazy-lock.json
+

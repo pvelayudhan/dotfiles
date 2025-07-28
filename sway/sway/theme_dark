@@ -1,0 +1,49 @@
+# Default config for sway
+
+# DEFAULTS ==================================================================
+default_border pixel 4
+gaps inner 0
+
+# COLOURS ===================================================================
+
+set $cl_high #d65d0e
+set $cl_indi #d65d0e
+set $cl_back #3c3836
+set $cl_fore #d9d8d8
+set $cl_urge #ee2e24
+
+set $red #d61b0e
+set $org #d69d0e
+set $grn #25d60e
+set $lbl #0ec9d6
+set $dbl #120278
+set $pur #4d0278
+set $pin #e300c1
+
+# gruvbox
+set $fore #e2cca9
+set $back #282828
+set $chill #3c3836
+
+# github
+#set $fore  #0e1116
+#set $back  #FFFFFF
+#set $chill #e6eefc
+
+# client.focused:           the focused window
+# client.focused_inactive:  the most recently focused window 
+
+# border: when in a multi-window, the border of the title
+# bg: when in a multi-window, the bg color of the title
+# text: when in a multi-window, the font color of the title
+# indi: when doing the split/toggle to create new win, the edge colour
+# childborder: the border of the actual window
+
+# Class                     border   bg       text     indi     childborder
+client.focused              $chill   $back    $fore    $chill   $chill
+client.unfocused            $back    $back    $chill   $back    $back
+client.focused_inactive     $back    $back    $chill   $back    $back
+client.focused_tab_title    $chill   $back    $fore    $back    $back
+client.urgent               $pur     $back    $pur     $back    $pur
+
+

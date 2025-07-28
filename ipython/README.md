@@ -1,0 +1,1 @@
+.ipython goes to $HOME

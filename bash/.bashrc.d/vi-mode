@@ -1,0 +1,15 @@
+# Enable vi-mode
+set -o vi
+
+# Clear screen
+bind -m vi-command '"\C-l":clear-screen'
+bind -m vi-insert '"\C-l":clear-screen'
+
+# Source ~/.bashrc
+bind -m vi-insert '"\C-s": "source ~/.bashrc\n"'
+
+# Edit current command
+bind -m vi-insert '"\C-x\C-e": edit-and-execute-command'
+
+# Run ./build.sh
+bind -m vi-insert '"\C-n": "./build.sh\n"'

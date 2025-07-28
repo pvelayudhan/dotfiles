@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# directories and files -------------------------------------------------------
+#
+# 'cd..': cd upwards until pattern is matched
+# cwd   : copy current directory absolute path to clipboard
+# ll    : list directories in a single column
+# ls    : list directories with colour (by default)
+# rzip  : zip all files in current directory into provided target name
+alias 'cd..'='cd_up'
+alias cwd="pwd | wl-copy"
+alias ll="ls -1"
+alias ls='ls --color=auto -a'
+alias rzip="find . -maxdepth 1 -type f | zip > $1"
+
+# text editing ----------------------------------------------------------------
+alias c='nvim -u NONE'     # clean launch neovim
+alias n="nvim"             # launch neovim
+alias v="vi"               # launch vi
+
+# power and battery management ------------------------------------------------
+# current_mode    : check if laptop is on performance or power saving mode
+# performance_mode: set laptop to performance mode
+# powersave_mode  : set laptop to power saving mode
+alias current_mode="cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"                              
+alias performance_mode="echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"  
+alias powersave_mode="echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"      
+
+# terminal --------------------------------------------------------------------
+alias kt="kitty +kitten themes" # change kitty theme
+
+# r ---------------------------------------------------------------------------
+alias r="R --quiet --no-save" # launch R quietly
+
+# sway ------------------------------------------------------------------------
+alias rot="swaymsg -- output - transform"  # rotate the screen
+alias sscopy="grimshot copy area"          # select area and copy screenshot to clipboard
+
+# tmux ------------------------------------------------------------------------
+alias tlast="tmux attach-session"          # attach to last tmux session
+alias tls="tmux list-sessions"             # list active tmux sessions
+
+# music -----------------------------------------------------------------------
+# rip     : rip music from a CD
+# tuneskis: shuffle play music
+alias rip='abcde -o flac' 
+alias tuneskis='mpv --shuffle .'
+
+# yt-dlp ----------------------------------------------------------------------
+# ytm: download audio from a youtube video
+# ytv: download audio + video from a youtube video
+alias ytm="yt-dlp -f 'ba' -x --audio-quality 0"                             
+alias ytv="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best[height<=720]'"  
+
+# pdf reader ------------------------------------------------------------------
+alias z="sioyek"
+
+# git -------------------------------------------------------------------------
+# copysincetag: copy all changes since last tag to clipboard
+# gdog        : pretty compact print git history
+# ghistory    : pretty detail print git history
+# lg          : launch lazygit
+alias copysincetag="git log \$(git describe --tags --abbrev=0)..HEAD --pretty=format:'- %s' | wl-copy"                                             
+alias gdog="git log --all --decorate --oneline --graph --pretty=format:'%C(auto)%h %C(green)%cd %C(auto)%d %s' --date=format:'%Y-%m-%d %H:%M'"     
+alias ghistory="git log -p -- $1"                                                                                                                  
+alias lg="lazygit"                                                                                                                                 
+
+
+# time tracking ---------------------------------------------------------------
+alias tir="~/.config/waybar/time_reset.py"

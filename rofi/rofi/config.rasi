@@ -1,0 +1,12 @@
+configuration {
+  modes: [ combi ];
+  combi-modes: [ window, drun, run ];
+}
+
+@theme "gruvbox-dark"
+ 
+/* Insert theme modifications after this */
+
+* { 
+    font:   "Maple Mono NF 16";
+}

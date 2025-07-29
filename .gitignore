@@ -3,4 +3,5 @@ packer_compiled.lua
 history.sqlite
 lazy-lock.json
 bootstrap-install.log
-
+bootstrap-local.conf
+bootstrap-local.sh

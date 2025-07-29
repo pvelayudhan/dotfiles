@@ -229,7 +229,12 @@ for item in "${custom_installs[@]}"; do
             check_command steam
             ;;
         typst)
-            cargo install --locked typst-cli
+            OUTPUT="$HOME/Downloads/typst.tar.xz"
+            wget -O "$OUTPUT" https://github.com/typst/typst/releases/download/v0.13.1/typst-x86_64-unknown-linux-musl.tar.xz
+            mkdir -p "$HOME/applications"
+            tar -xavf "$OUTPUT" -C "$HOME/applications/"
+            ln -sf "$HOME/applications/typst-x86_64-unknown-linux-musl/typst" "$HOME/.local/bin/typst"
+            rm "$HOME/Downloads/typst.tar.xz"
             check_command typst
             ;;
         ytdlp)

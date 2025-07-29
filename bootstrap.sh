@@ -124,6 +124,15 @@ if [ ${#dotfile_items[@]} -gt 0 ]; then
 else
     echo "- No dotfiles to link."
 fi
+# Fonts
+if [ ${#fonts[@]} -gt 0 ]; then
+    echo "- Install the following fonts:"
+    for item in "${fonts[@]}"; do
+        echo "  • $item"
+    done
+else
+    echo "- No fonts to install."
+fi
 
 echo
 read -p "Continue with installation? (y/n): " confirm

@@ -294,8 +294,8 @@ for name in "${fonts[@]}"; do
         maplemono)
             echo "attempting to install Maple Mono NF font..."
             # Set variables
-            URL="https://github.com/subframe7536/maple-font/releases/download/v7.4/MapleMonoNormal-TTF-AutoHint.zip"
-            ZIP_NAME="MapleMonoNormal-TTF-AutoHint.zip"
+            URL="https://github.com/subframe7536/maple-font/releases/download/v7.4/MapleMono-NF-unhinted.zip"
+            ZIP_NAME="MapleMono-NF-Unhinted.zip"
             TMP_DIR="/tmp/maple-font"
             FONT_DIR="$HOME/.local/share/fonts"
             # Create temp and font directories

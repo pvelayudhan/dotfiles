@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+# colour coded messages
+if [ -t 1 ]; then
+  GREEN="\033[32m"
+  RED="\033[31m"
+  RESET="\033[0m"
+else
+  GREEN=""
+  RED=""
+  RESET=""
+fi
+
+
 LOGFILE="./bootstrap-install.log"
 exec > >(tee -a "$LOGFILE") 2>&1
 
@@ -20,9 +32,9 @@ expand_path() {
 check_command() {
     local cmd="$1"
     if command -v "$cmd" >/dev/null 2>&1; then
-        echo -e "\033[32m✓ Successfully installed '$cmd'.\033[0m"
+        echo -e "${GREEN}✓ Successfully installed '$cmd'.${RESET}"
     else
-        echo -e "\033[31m✗ Failed to install '$cmd'.\033[0m"
+        echo -e "${RED}✗ Failed to install '$cmd'.${RESET}"
         return 1
     fi
 }
@@ -30,9 +42,9 @@ check_command() {
 check_python_module() {
     local module="$1"
     if python3 -c "import $module" >/dev/null 2>&1; then
-        echo -e "\033[32m✓ Successfully installed Python module '$module'.\033[0m"
+        echo -e "${GREEN}✓ Successfully installed Python module '$module'.${RESET}"
     else
-        echo -e "\033[31m✗ Failed to install Python module '$module'.\033[0m"
+        echo -e "${RED}✗ Failed to install Python module '$module'.${RESET}"
         return 1
     fi
 }
@@ -40,9 +52,9 @@ check_python_module() {
 check_font() {
     local font="$1"
     if fc-list | grep -iq "$font" >/dev/null 2>&1; then
-        echo -e "\033[32m✓ Successfully installed '$font'.\033[0m"
+        echo -e "${GREEN}✓ Successfully installed '$font'.${RESET}"
     else
-        echo -e "\033[31m✗ Failed to install '$font'.\033[0m"
+        echo -e "${RED}✗ Failed to install '$font'.${RESET}"
         return 1
     fi
 }
@@ -54,17 +66,17 @@ check_symlink() {
         local actual_src
         actual_src=$(readlink "$dest")
         if [ "$actual_src" = "$expected_src" ]; then
-            echo -e "\033[32m✓ Successfully linked '$dest' → '$expected_src'.\033[0m"
+            echo -e "${GREEN}✓ Successfully linked '$dest' → '$expected_src'.${RESET}"
             return 0
         else
-            echo -e "\033[31m✗ '$dest' is a symlink, but points to '$actual_src' (expected '$expected_src'). Replacing...\033[0m"
+            echo -e "${RED}✗ '$dest' is a symlink, but points to '$actual_src' (expected '$expected_src'). Replacing...${RESET}"
             return 1
         fi
     elif [ -e "$dest" ]; then
-        echo -e "\033[31m✗ '$dest' exists but is not a symlink. Replacing...\033[0m"
+        echo -e "${RED}✗ '$dest' exists but is not a symlink. Replacing...${RESET}"
         return 1
     else
-        echo -e "\033[33m- '$dest' does not exist. Creating symlink...\033[0m"
+        echo -e "\033[33m- '$dest' does not exist. Creating symlink...${RESET}"
         return 1
     fi
 }
@@ -129,27 +141,10 @@ fi
 # --- Install DNF packages ---
 if [[ ${#dnf_packages[@]} -gt 0 ]]; then
     echo "Installing DNF packages..."
-    failed_packages=()
-
-    for pkg in "${dnf_packages[@]}"; do
-        echo "Installing package: $pkg"
-        if sudo dnf -y install "$pkg"; then
-            echo -e "\033[32m✓ Successfully installed '$pkg'.\033[0m"
-        else
-            echo -e "\033[31m✗ Failed to install '$pkg'.\033[0m"
-            failed_packages+=("$pkg")
-        fi
-    done
-
-    if [[ ${#failed_packages[@]} -gt 0 ]]; then
-        echo -e "\nThe following packages failed to install:"
-        for failed in "${failed_packages[@]}"; do
-            echo "  - $failed"
-        done
-        # Optionally exit with failure code
-        # exit 1
+    if sudo dnf -y install "${dnf_packages[@]}"; then
+        echo -e "${GREEN}✓ All packages installed successfully.${RESET}"
     else
-        echo "All DNF packages installed successfully."
+        echo -e "${RED}✗ One or more DNF packages failed to install. Check the log at '$LOGFILE'.${RESET}"
     fi
 fi
 
@@ -245,7 +240,7 @@ for item in "${custom_installs[@]}"; do
             check_command zotero
             ;;
         *)
-            echo -e "\033[31m✗ No custom install script for '$cmd'.\033[0m"
+            echo -e "${RED}✗ No custom install script for '$cmd'.${RESET}"
             ;;
     esac
 done

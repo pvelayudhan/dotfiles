@@ -1,8 +1,7 @@
 # dotfiles
 
-Configuration files intended for usage with `Fedora Sway Spin 42`.
-I developed them for a working with sway, neovim, git, kitty, bash, and tmux.
-The neovim configuration started many moons ago from a base of [Launch.nvim](https://github.com/LunarVim/Launch.nvim) (which is also where the GPL license came from).
+Configuration files intended for usage with Fedora 42's sway spin.
+The neovim configuration started from a base of [Launch.nvim](https://github.com/LunarVim/Launch.nvim) (which is also where the GPL license came from).
 
 ## Automated installation
 
@@ -46,25 +45,3 @@ Same story as `[custom-install]` and `[dotfiles]`.
 
 The commands `lightson` and `lightsoff` can swap light/dark modes for nearly everything.
 Some applications like firefox and neovim need to be manually reloaded to have the swap take effect.
-
-## Things to do that aren't in the script
-
-### Hardware-specific changes
-
-You may want to change things in the sway configuration file (command `nsway` if using the provided dotfiles for bash) to manage monitor/wallpaper/other hardware related things.
-
-### ssh/git integration
-
-```
-ssh-keygen -t ed25519 -C "your_email@example.com"
-cd ~/.ssh
-cat id_ed25519.pub | wl-copy
-```
-
-Visit: and paste into https://github.com/settings/ssh/new
-
-### Other programs
-
-- [sioyek (pdf reader)](https://github.com/ahrm/sioyek/releases)
-- [anki (flash cards)](https://docs.ankiweb.net/platform/linux/installing.html)
-- [quarto (document prep)](https://quarto.org/docs/get-started/)

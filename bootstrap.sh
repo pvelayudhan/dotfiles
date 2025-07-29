@@ -204,6 +204,19 @@ for item in "${custom_installs[@]}"; do
             sudo -v ; curl https://rclone.org/install.sh | sudo bash
             check_command rclone
             ;;
+        sioyek)
+            echo "attempting to installing sioyek PDF reader..."
+            mkdir -p ~/applications
+            cd ~/applications
+            # Download and extract
+            wget -O sioyek-release-linux.zip https://github.com/ahrm/sioyek/releases/download/sioyek3-alpha0/sioyek-release-linux.zip
+            unzip -o sioyek-release-linux.zip -d sioyek
+            rm sioyek-release-linux.zip
+            # Symlink the executable
+            mkdir -p ~/.local/bin
+            ln -sf ~/applications/sioyek/Sioyek-x86_64.AppImage ~/.local/bin/sioyek
+            check_command sioyek
+            ;;
         steam)
             sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
             sudo dnf config-manager --enable fedora-cisco-openh264 -y

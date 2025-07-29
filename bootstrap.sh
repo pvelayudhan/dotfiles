@@ -190,7 +190,7 @@ for item in "${custom_installs[@]}"; do
             cd ~/applications/lazygit
             go install
             cd -
-            check_command lazygit
+            check_command ~/go/bin/lazygit
             ;;
         liveserver)
             sudo npm -g install live-server

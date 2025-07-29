@@ -12,8 +12,9 @@ else
 fi
 
 
+# write to log file without colour codes
 LOGFILE="./bootstrap-install.log"
-exec > >(tee -a "$LOGFILE") 2>&1
+exec > >(tee >(sed -r "s/\x1B\[[0-9;]*[mK]//g" >> "$LOGFILE")) 2>&1
 
 echo "===== Bootstrap script started at $(date '+%Y-%m-%d %H:%M:%S') ====="
 

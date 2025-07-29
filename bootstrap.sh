@@ -196,9 +196,9 @@ for item in "${custom_installs[@]}"; do
             cd -
             check_command ~/go/bin/lazygit
             ;;
-        liveserver)
+        live-server)
             sudo npm -g install live-server
-            check_command liveserver
+            check_command live-server
             ;;
         pynvim)
             pip install --user pynvim

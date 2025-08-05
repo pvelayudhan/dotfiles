@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 
 # colour coded messages
-if [ -t 1 ]; then
-  GREEN="\033[32m"
-  RED="\033[31m"
-  RESET="\033[0m"
-else
-  GREEN=""
-  RED=""
-  RESET=""
-fi
+GREEN="\033[32m"
+RED="\033[31m"
+YELLOW="\033[33m"
+RESET="\033[0m"
 
 
 # write to log file without colour codes
@@ -70,14 +65,14 @@ check_symlink() {
             echo -e "${GREEN}✓ Successfully linked '$dest' → '$expected_src'.${RESET}"
             return 0
         else
-            echo -e "${RED}✗ '$dest' is a symlink, but points to '$actual_src' (expected '$expected_src'). Replacing...${RESET}"
+            echo -e "${YELLOW}! '$dest' is a symlink, but points to '$actual_src' (expected '$expected_src'). Replacing...${RESET}"
             return 1
         fi
     elif [ -e "$dest" ]; then
-        echo -e "${RED}✗ '$dest' exists but is not a symlink. Replacing...${RESET}"
+        echo -e "${YELLOW}! '$dest' exists but is not a symlink. Replacing...${RESET}"
         return 1
     else
-        echo -e "\033[33m- '$dest' does not exist. Creating symlink...${RESET}"
+        echo -e "${YELLOW}! '$dest' does not exist. Creating symlink...${RESET}"
         return 1
     fi
 }

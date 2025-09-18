@@ -1,5 +1,5 @@
 " Ensures that working directory is set to the current file
-autocmd BufEnter *.md silent! :lcd%:p:h
+"autocmd BufEnter *.md silent! :lcd%:p:h
 
 " Quick compile to PDF
 nnoremap <buffer> <F1> :!pandoc % -o %:r.pdf<CR>

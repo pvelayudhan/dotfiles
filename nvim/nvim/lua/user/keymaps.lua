@@ -59,7 +59,6 @@ vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definiti
 vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
 
 keymap("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
-keymap("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
 
 --Startup time
 keymap("n", "<leader>su", ":lua print(require('lazy').stats().startuptime)<CR>", opts)
@@ -95,6 +94,9 @@ keymap("n", "<F1>", ":make<CR>")
 -- window picking
 keymap("n", "-", ":lua PickWin()<CR>", opts)
 keymap("n", "=", ":lua SwapWin()<CR>", opts)
+
+-- tab picking
+keymap("n", "<Tab>", ":tabn<CR>", opts)
 
 -- cursorline highlight
 keymap("n", "<leader>hl", ":set cursorline<CR>", opts)

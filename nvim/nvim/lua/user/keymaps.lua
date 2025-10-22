@@ -116,7 +116,7 @@ keymap("n", "<leader>ys", ":set spell<CR>", opts)
 keymap("n", "<leader>sy", ":set nospell<CR>", opts)
 
 -- color column
-keymap("n", "<leader>cc", ":execute 'set colorcolumn=' . (&colorcolumn == '' ? '80' : '')<CR>", opts)
+keymap("n", "<leader>cc", ":execute 'set colorcolumn=' . (&colorcolumn == '' ? '76' : '')<CR>", opts)
 
 -- colorscheme
 keymap("n", "<leader>cl", ":set background=light<CR>", opts)

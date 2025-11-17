@@ -189,3 +189,4 @@ keymap("n", "<leader>sw", ":lua StripWhitespace()<CR>", opts)
 
 -- shortcuts to a regularly edited file
 keymap("n", "<leader>ww", ":e ~/Documents/prash/journal/prash.md<CR>", opts)
+keymap("n", "<leader>wm", ":e ~/Documents/prash/journal/music.csv<CR>", opts)

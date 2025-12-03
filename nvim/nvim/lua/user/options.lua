@@ -21,7 +21,7 @@ vim.opt.pumheight      = 10                         -- pop up menu height
 vim.opt.relativenumber = true                       -- set relative numbered lines
 vim.opt.ruler          = false
 vim.opt.scrolloff      = 8                          -- minimal number of screen lines to keep above and below the cursor
-vim.opt.shiftwidth     = 2                          -- the number of spaces inserted for each indentation
+vim.opt.shiftwidth     = 4                          -- the number of spaces inserted for each indentation
 vim.opt.showbreak      = '|'                        -- symbol prefixing wrapped lines
 vim.opt.showcmd        = false                      -- hide (partial) command in the last line of the screen (for performance)
 vim.opt.showmode       = false                      -- we don't need to see things like -- INSERT -- anymore
@@ -51,8 +51,8 @@ vim.opt.autoindent  = true
 vim.opt.cindent     = true
 vim.opt.smartindent = false                         -- make indenting smarter again
 vim.opt.smarttab    = true
-vim.opt.softtabstop = 2                             -- four space tabs
-vim.opt.tabstop     = 2                             -- four space tabs
+vim.opt.softtabstop = 4                             -- four space tabs
+vim.opt.tabstop     = 4                             -- four space tabs
 
 
 -- Transparency

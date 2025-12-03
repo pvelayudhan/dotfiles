@@ -141,8 +141,6 @@ bindsym $mod+Control+Shift+$up move workspace to output up
 bindsym $mod+Control+Shift+$down move workspace to output down
 
 ## Layout stuff:
-bindsym $mod+b splith
-bindsym $mod+v splitv
 bindsym $mod+BackSpace splitt
 
 ## Switch the current container between different layout styles

@@ -1,1 +1,1 @@
-colorscheme_dark.lua
+/home/prashanth/.config/nvim/lua/user/colorscheme_dark.lua

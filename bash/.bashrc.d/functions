@@ -56,7 +56,9 @@ function ipy() {
 function lightson() {
     # neovim
     rm ~/.config/nvim/lua/user/colorscheme.lua
+    rm ~/.config/nvim/lua/user/options.lua
     ln -s ~/.config/nvim/lua/user/colorscheme_light.lua ~/.config/nvim/lua/user/colorscheme.lua 
+    ln -s ~/.config/nvim/lua/user/options_light.lua ~/.config/nvim/lua/user/options.lua 
 
     # sway
     rm ~/.config/sway/theme
@@ -80,7 +82,9 @@ function lightson() {
 function lightsoff() {
     # neovim
     rm ~/.config/nvim/lua/user/colorscheme.lua
+    rm ~/.config/nvim/lua/user/options.lua
     ln -s ~/.config/nvim/lua/user/colorscheme_dark.lua ~/.config/nvim/lua/user/colorscheme.lua 
+    ln -s ~/.config/nvim/lua/user/options_dark.lua ~/.config/nvim/lua/user/options.lua 
 
     # sway
     rm ~/.config/sway/theme

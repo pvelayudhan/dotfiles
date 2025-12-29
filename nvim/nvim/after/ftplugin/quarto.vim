@@ -10,3 +10,5 @@ setlocal formatexpr=FormatexprExample()
 set conceallevel=0
 
 set syntax=markdown
+
+nnoremap <buffer> <F1> :!quarto render %<CR>

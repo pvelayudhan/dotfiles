@@ -19,6 +19,7 @@ spec "user.tabular"
 spec "user.goyo"
 spec "user.lsp"
 spec "user.dap"
+spec "user.snacks"
 
 require "user.options"
 require "user.keymaps"

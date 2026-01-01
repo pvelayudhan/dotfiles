@@ -131,7 +131,6 @@ keymap("n", "<leader>mk", ":lua require('oil').toggle_float()<CR>", opts)
 
 -- telescope
 keymap("n", "<leader>ci", ":Telescope bibtex<CR>", opts)
-keymap("i", "<C-i>", "<cmd>Telescope bibtex<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope file_browser hidden=true use_df=true follow_symlinks=true<CR>", opts)
 keymap("n", "<leader>fc", ":Telescope colorscheme<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)

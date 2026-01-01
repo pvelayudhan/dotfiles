@@ -13,9 +13,6 @@ local M = {
             lazy = true,
         },
         {
-            "nvim-telescope/telescope-bibtex.nvim",
-        },
-        {
             "nvim-telescope/telescope-file-browser.nvim",
         },
         {
@@ -94,18 +91,9 @@ function M.config()
                     }
                 },
             },
-            bibtex = {
-                mappings = {
-                    --i = {
-                    --    ["<CR>"] = require('telescope-bibtex.actions').key_append([[\citep{%s}]]), -- a string with %s to be replaced by the citation key
-                    --    ["<M-CR>"] = require('telescope-bibtex.actions').key_append([[\cite{%s}]]), -- a string with %s to be replaced by the citation key
-                    --}
-                }
-            }
         }
     }
     telescope.load_extension 'fzf'
-    telescope.load_extension "bibtex"
     telescope.load_extension "file_browser"
     telescope.load_extension "ui-select"
 end

@@ -1,4 +1,4 @@
-nnoremap <buffer> ; :call TypstCompile()<CR>
+nnoremap <buffer> <F1> :call TypstCompile()<CR>
 
 function! TypstCompile()
   if expand('%:t') =~# 'html\.typ$'

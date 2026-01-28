@@ -21,12 +21,16 @@ local on_attach = function(client, bufnr)
 end
 
 return {
-    {
-        "neovim/nvim-lspconfig",
-        config = function()
-            require("lspconfig").clangd.setup ({
-                on_attach = on_attach
-            })
-        end,
-    }
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      lspconfig.clangd.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+    end,
+  }
 }

@@ -19,6 +19,11 @@ local M = {
             commit = "05a9ab28b53f71d1aece421ef32fee2cb857a843",
         },
         {
+            "neovim/nvim-lspconfig",
+            event = "BufReadPre",
+            dependencies = { "hrsh7th/cmp-nvim-lsp" },
+        },
+        {
             "L3MON4D3/LuaSnip",
             event = "InsertEnter",
             commit = "c1851d5c519611dfc451b6582961b2602e0af89b",
@@ -53,7 +58,7 @@ function M.config()
             ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
             ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
             -- Ways to confirm a selection
-            ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
+            ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = true })),
             ["<C-l>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
             ["<Right>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
             ["<C-Space>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
@@ -116,6 +121,7 @@ function M.config()
             end,
         },
         sources = {
+            { name = "nvim_lsp"},
             { name = "luasnip" },
             { name = "buffer" },
             --{ name = "path" },

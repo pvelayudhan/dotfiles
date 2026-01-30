@@ -20,6 +20,7 @@ spec "user.goyo"
 spec "user.lsp"
 spec "user.dap"
 spec "user.snacks"
+spec "user.copilot"
 
 require "user.options"
 require "user.keymaps"

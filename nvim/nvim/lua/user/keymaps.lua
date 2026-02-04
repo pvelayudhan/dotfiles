@@ -164,6 +164,9 @@ keymap("n", "<leader>zm", ":Goyo<CR>", opts)
 -- copilot
 keymap("n", "<leader>kk", ":Copilot toggle<CR>", opts)
 
+-- tabularize
+keymap("v", "<leader>t", ":Tabularize<CR>", opts)
+
 -- custom functions -----------------------------------------------------------
 -- session management
 keymap("n", "<leader>ms", ":lua SaveSession()<CR>", opts)

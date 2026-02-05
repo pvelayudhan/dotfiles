@@ -173,5 +173,4 @@ vim.api.nvim_create_autocmd('ModeChanged', {
     end
 })
 
-
 return M

@@ -58,7 +58,7 @@ function M.config()
             ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
             ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
             -- Ways to confirm a selection
-            ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = true })),
+            --["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = true })),
             ["<C-l>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
             ["<Right>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
             ["<C-Space>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),

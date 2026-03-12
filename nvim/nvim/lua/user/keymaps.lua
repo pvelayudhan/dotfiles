@@ -166,6 +166,7 @@ keymap("n", "<leader>kk", ":Copilot toggle<CR>", opts)
 
 -- tabularize
 keymap("v", "<leader>t", ":Tabularize<CR>", opts)
+keymap("n", "<leader>t", ":Tabularize<CR>", opts)
 
 -- custom functions -----------------------------------------------------------
 -- session management

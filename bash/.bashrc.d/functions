@@ -30,6 +30,10 @@ function cpfig() {
     cp -i "$@" ~/Documents/abcd-snf-article/figures/
 }
 
+function cpdef() {
+    cp -i "$@" ~/Documents/defense-slides/other-figures/
+}
+
 function gpa() {
     cd ~/Documents/
     find . -name .git -print -execdir git pull \;

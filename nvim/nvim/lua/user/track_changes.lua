@@ -1,6 +1,26 @@
 local M = {}
 local ns = vim.api.nvim_create_namespace("track_changes")
 
+-- This function defines your colors
+local function set_colors()
+    -- Gruvbox-friendly colors:
+    -- Dark Green background for additions, Muted Red for deletions
+    vim.api.nvim_set_hl(0, "TrackAdd", { bg = "#32361a", bold = true }) 
+    vim.api.nvim_set_hl(0, "TrackDelete", { fg = "#ea6962", strikethrough = true })
+end
+
+-- Initialize colors immediately
+set_colors()
+
+-- RE-INITIALIZE colors whenever the colorscheme changes
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        set_colors()
+    end,
+})
+
+
+
 -- Highlight groups
 vim.api.nvim_set_hl(0, "TrackAdd", { bg = "#2e4e2e" })
 vim.api.nvim_set_hl(0, "TrackDelete", { fg = "#aa4444", strikethrough = true })

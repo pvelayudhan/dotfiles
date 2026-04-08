@@ -21,7 +21,7 @@ spec "user.dap"
 spec "user.cmp"
 spec "user.lsp"
 
-require("user.track_changes").setup()
+--require("user.track_changes").setup()
 require "user.options"
 require "user.keymaps"
 require "user.functions"

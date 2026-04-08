@@ -145,9 +145,13 @@ keymap("n", "<leader>fu", ":Telescope buffers<CR>", opts)
 keymap("n", "^", ":Gitsigns prev_hunk<CR>", opts)
 keymap("n", "&", ":Gitsigns next_hunk<CR>", opts)
 keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
+-- Stage only the current line
+keymap("n", "<leader>gl", function() require("gitsigns").stage_hunk({vim.fn.line("."), vim.fn.line(".")}) end, opts)
 keymap("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", opts)
+keymap("v", "<leader>gr", ":Gitsigns reset_hunk<CR>", opts)
 keymap("n", "<leader>gs", ":Gitsigns toggle_signs<CR>", opts)
 keymap("n", "<leader>ga", ":Gitsigns stage_hunk<CR>", opts)
+keymap("v", "<leader>ga", ":Gitsigns stage_hunk<CR>", opts)
 
 -- diffview
 keymap( "n", "<leader>gd", ":DiffviewFileHistory %<CR>", opts)

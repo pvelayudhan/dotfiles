@@ -1,7 +1,11 @@
 nnoremap <buffer> <F1> :call TypstCompile()<CR>
 
 function! TypstCompile()
-  if expand('%:t') =~# 'html\.typ$'
+  let cwd = getcwd()
+
+  if cwd =~# 'pv-thesis'
+    !typst compile main.typ
+  elseif expand('%:t') =~# 'html\.typ$'
     !vel_typst_html_compile %
   else
     !typst compile %

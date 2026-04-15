@@ -62,21 +62,20 @@ function M.config()
             ["<C-l>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
             ["<Right>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
             ["<C-Space>"] = cmp.mapping(cmp.mapping.confirm({ select = false })),
-            -- Copilot
-            ["<C-CR>"] = cmp.mapping(
-                function(fallback)
-                    local copilot_ok, copilot = pcall(require, "copilot.suggestion")
-
-                    if copilot_ok and copilot.is_visible() then
-                        copilot.accept()
-                    elseif cmp.visible() then
-                        cmp.confirm({ select = false })
-                    else
-                        fallback()
-                    end
-                end,
-                { "i", "s" }
-            ),
+            ---- Copilot
+            --["<C-CR>"] = cmp.mapping(
+            --    function(fallback)
+            --        local copilot_ok, copilot = pcall(require, "copilot.suggestion")
+            --        if copilot_ok and copilot.is_visible() then
+            --            copilot.accept()
+            --        elseif cmp.visible() then
+            --            cmp.confirm({ select = false })
+            --        else
+            --            fallback()
+            --        end
+            --    end,
+            --    { "i", "s" }
+            --),
             -- Navigation of the cmp menu
             ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
             ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),

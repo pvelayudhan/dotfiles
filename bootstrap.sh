@@ -224,8 +224,11 @@ for item in "${custom_installs[@]}"; do
             check_command steam
             ;;
         typst)
+            VERSION=$(curl -s https://api.github.com/repos/typst/typst/releases/latest \
+              | grep '"tag_name":' \
+              | sed -E 's/.*"v([^"]+)".*/\1/')
             OUTPUT="$HOME/Downloads/typst.tar.xz"
-            wget -O "$OUTPUT" https://github.com/typst/typst/releases/download/v0.13.1/typst-x86_64-unknown-linux-musl.tar.xz
+            wget -O "$OUTPUT" https://github.com/typst/typst/releases/download/v${VERSION}/typst-x86_64-unknown-linux-musl.tar.xz
             mkdir -p "$HOME/applications"
             tar -xavf "$OUTPUT" -C "$HOME/applications/"
             ln -sf "$HOME/applications/typst-x86_64-unknown-linux-musl/typst" "$HOME/.local/bin/typst"
